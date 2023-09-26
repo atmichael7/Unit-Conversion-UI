@@ -78,6 +78,10 @@ def N_topLeftCalculate():
         for i in range(1,30):           # loop through the multiple concatinations to see if multiple empty spaces are entered
             if tempVariable == " "*i:   # ifSo, no big deal and send no error message
                 return False            
+  
+        if tempVariable[0:7] == "Invalid": # prevents the invalid response to be stacked onto itself
+            return False
+
         tLeftInput.insert(0, "Invalid -> ") # otherwise and invalid string has been entered into the field
         return False                        # thus show error on input field and do no calculations
     # the reason for not caring about empty strings before or after numeric input is that the program can still do calculations with empty spaces before or after
@@ -131,21 +135,26 @@ def topLeftClear():
 
 # Top left output displays Imperial - Speed
 def topLeftDisplay(data):
-    i = 10
-    outputRateStuff = clicked3.get()
-    if outputRateStuff == "Per second":
-        outputRateStuff = rates[0]
-    elif outputRateStuff == "Per minute":
-        outputRateStuff = rates[1]
-    else:
-        outputRateStuff = rates[2]
+    selectedOutRate = clicked3.get()
+    displayOutRate = ""
+    # set output rate
+    for i in range(len(rates)): # go thru rates
+        if N_outRates[i][0] == selectedOutRate: # see if the current index at position == desired output rate
+            displayOutRate = rates[i] # ifSo, set outputRate = the current index of list
+            break # done
         
-    for x in range(5):
-        outputUnitStuff = units[x]
+    currRow = 10 # currRow is the row in which the label will be displayed for the output
+    for currOutput in range(5): # currOutput is the current data entry being moved from the data to the respective row
+        # this label below is to clear out any residual text that would otherwise remain since it is not associated with a variable
         Label(tLeftLabel, text = "                                                                                                    "
-              , bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
-        Label(tLeftLabel, text = (str(data[x]), outputUnitStuff, "per", outputRateStuff), bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
-        i += 1
+              , bg = "lightgray").grid(row = currRow, column = 0, padx = 7, pady = 3, sticky = "w") 
+        # the label below is the data
+        # ARG1: data[currOutput] is the data taken from the current index of the data passed from topLeftData
+        # ARG2: is the current unit that will be displayed in the iteration respective to the row
+        # ARG3: is a "per" string output to be between the unit "per" rate
+        # ARG4: is the displayOutRate which is obtained from the for loop above this current one
+        Label(tLeftLabel, text = (str(data[currOutput]), units[currOutput], "per", displayOutRate), bg = "lightgray").grid(row = currRow, column = 0, padx = 7, pady = 3, sticky = "w")
+        currRow += 1 # move onto the next row, used for the lable grid position arguement where row = currRow
 
 
 # Upper left
