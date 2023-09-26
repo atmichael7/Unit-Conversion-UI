@@ -69,22 +69,23 @@ def testUpdateData(data):
             data[x-1] = sampleList[x-1]
     topLeftDisplay(data)
 
-    
-
-
 # Call this function if 
 def topLeftCalculate():
-    pass
+    testUpdateData(topLeftData)
 
 def topLeftClear():
-    pass
+    for currIndex in range(len(topLeftData)):
+        topLeftData[currIndex-1] = 0
+    topLeftDisplay(topLeftData)
 
 # Top left output displays Imperial - Speed
 def topLeftDisplay(data):
     i = 10
     for x in range(5):
+        Label(tLeftLabel, text = "                                                                      ", bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
         Label(tLeftLabel, text = data[x], bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
         i += 1
+
 
 
 
@@ -158,7 +159,7 @@ topLeftDisplay(topLeftData)
 
 
 # Calculate button
-b1 = Button(tLeftLabel, text = "CALCULATE", command = testUpdateData(topLeftData))
+b1 = Button(tLeftLabel, text = "CALCULATE", command = topLeftCalculate)
 b1.grid(row = 8, column = 0, padx = 7, pady = 5, sticky = "w")
 
 # Clear button
