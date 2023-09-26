@@ -84,12 +84,24 @@ def testUpdateData(data):
 # Call this function
 def topLeftCalculate():
     
+    if tLeftInput.get() == "":
+            return False
+    
+    try:
+        inputValue = float(tLeftInput.get())
+    except:
+        tempVariable = tLeftInput.get()
+        for i in range(1,30):
+            if tempVariable == " "*i:
+                return False
+        tLeftInput.insert(0, "Invalid -> ")
+        return False
+
     inputValue = float(tLeftInput.get())
     inputUnit = clicked1.get()
     inputRate = clicked2.get()
     outputRate = clicked3.get()
 
-    #print(inputValue, " ", inputUnit, " ", inputRate, " ", outputRate)
 
     if inputUnit == "cm":
         matrix = 0
@@ -277,6 +289,7 @@ def topLeftCalculate():
 def topLeftClear():
     for currIndex in range(len(topLeftData)):
         topLeftData[currIndex-1] = 0
+        tLeftInput.delete(0, END)
     topLeftDisplay(topLeftData)
 
 def notifyDisplay():
