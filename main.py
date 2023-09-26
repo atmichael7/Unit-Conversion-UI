@@ -42,6 +42,9 @@ oneFt = [30.48, 12, 1, 0.333333, 0.000189394]
 oneYd = [91.44, 36, 3, 1, 0.000568182]
 oneMi = [160934, 63360, 5280, 1760, 1]
 
+units = ["centimeters", "inches", "feet", "yards", "miles"]
+rates = ["second", "minute", "hour"]
+
 #             cm       in         ft          yd          mi
 allUnits =  [[1,       0.393701,  0.0328084,  0.0108361,  0.0000062137], # cm
              [2.54,    1,         0.08333,    0.0277778,  0.000015783],  # in
@@ -271,25 +274,31 @@ def topLeftCalculate():
 
         
        
-
-    
-    
-
 def topLeftClear():
     for currIndex in range(len(topLeftData)):
         topLeftData[currIndex-1] = 0
     topLeftDisplay(topLeftData)
 
+def notifyDisplay():
+    topLeftCalculate()
+    topLeftDisplay(topLeftData)
+
 # Top left output displays Imperial - Speed
 def topLeftDisplay(data):
     i = 10
+    outputRateStuff = clicked3.get()
+    if outputRateStuff == "Per second":
+        outputRateStuff = rates[0]
+    elif outputRateStuff == "Per minute":
+        outputRateStuff = rates[1]
+    else:
+        outputRateStuff = rates[2]
+        
     for x in range(5):
+        outputUnitStuff = units[x]
         Label(tLeftLabel, text = "                                                                      ", bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
-        Label(tLeftLabel, text = data[x], bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
+        Label(tLeftLabel, text = (str(data[x]), outputUnitStuff, "per", outputRateStuff), bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
         i += 1
-
-
-
 
 
 # Upper left
@@ -343,7 +352,7 @@ clicked3.set("Per second")
 
 i = 4
 for text, selected in options3:
-    Radiobutton(tLeftLabel, text = text, variable = clicked3, value = selected, bg = "lightgray").grid(row = i, column = 0, padx = 5, sticky = "w")
+    Radiobutton(tLeftLabel, text = text, variable = clicked3, value = selected, command = notifyDisplay,bg = "lightgray").grid(row = i, column = 0, padx = 5, sticky = "w")
     i += 1
 
 
