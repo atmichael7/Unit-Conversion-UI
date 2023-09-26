@@ -95,23 +95,32 @@ def topLeftCalculate():
                 for i in range(len(topLeftData)):
                     topLeftData[i-1] = inputValue * allUnits[0][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[0][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[0][i-1] * (60 * 60)
+
         elif inputRate == "min":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[0][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[0][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[0][i-1] * (60 * 60)
         else:
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[0][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[0][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[0][i-1] * (60 * 60)
 
     
     elif inputUnit == "in":
