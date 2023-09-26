@@ -85,138 +85,187 @@ def topLeftCalculate():
     inputUnit = clicked1.get()
     inputRate = clicked2.get()
     outputRate = clicked3.get()
-    
 
     #print(inputValue, " ", inputUnit, " ", inputRate, " ", outputRate)
 
     if inputUnit == "cm":
+        matrix = 0
         if inputRate == "sec":
             if outputRate == "Per second":
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[0][i-1] * 1
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[0][i-1] * 60
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
             else:
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[0][i-1] * (60 * 60)
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
 
         elif inputRate == "min":
             if outputRate == "Per second":
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[0][i-1] * 1
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[0][i-1] * 60
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
             else:
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[0][i-1] * (60 * 60)
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
+
         else:
             if outputRate == "Per second":
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[0][i-1] * 1
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[0][i-1] * 60
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
             else:
                 for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[0][i-1] * (60 * 60)
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
 
     
     elif inputUnit == "in":
+        matrix = 1
         if inputRate == "sec":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
+
         elif inputRate == "min":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
+        
         else:
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
 
 
     elif inputUnit == "ft":
+        matrix = 2
         if inputRate == "sec":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
+
         elif inputRate == "min":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
+        
         else:
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
 
     
     elif inputUnit == "yd":
+        matrix = 3
         if inputRate == "sec":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
+
         elif inputRate == "min":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
+        
         else:
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
 
 
     else: # input unit == mi
+        matrix = 4
         if inputRate == "sec":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
+
         elif inputRate == "min":
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
+        
         else:
             if outputRate == "Per second":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
             elif outputRate == "Per minute":
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
             else:
-                pass
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
 
     topLeftDisplay(topLeftData)
 
