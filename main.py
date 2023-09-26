@@ -79,11 +79,35 @@ def testUpdateData(data):
             data[x-1] = sampleList[x-1]
     topLeftDisplay(data)
 
+# value is the input value, x is the 
+def tL_FinCalc(val, inUnit, inRate):
+    if inRate == 1 or inRate == 4 or inRate == 7 or inRate == 10:
+        if inUnit == 0:
+            pass
+        elif inUnit == 1:
+            pass
+        elif inUnit == 2:
+            pass
+        elif inUnit == 3:
+            pass
+        elif inUnit == 4:
+            pass
+        elif inUnit == 5:
+            pass
 
 
-# Call this function
-def topLeftCalculate():
-    
+
+# Dictionary to associate the matrix [x][] position in the matrix unit conversion array
+N_units = ["cm", "in", "ft", "yd", "mi"]
+
+# Dictionary to associate in/out rates with their respective values 
+N_rates = [("sec", 1), ("min", 60), ("hr", 3600)]
+
+# Dictionary to associate output rate with respective values
+N_outRates = [("Per second", 1), ("Per minute", 60), ("Per hour", 3600)]
+
+# More efficient code
+def N_topLeftCalculate():
     if tLeftInput.get() == "":
             return False
     
@@ -101,199 +125,42 @@ def topLeftCalculate():
     inputUnit = clicked1.get()
     inputRate = clicked2.get()
     outputRate = clicked3.get()
+    matrix = 0
 
+    # set units to the corresponding unit matrix
+    for i in range(len(N_units)):
+        if N_units[i] == inputUnit:
+            matrix = i
+            break
 
-    if inputUnit == "cm":
-        matrix = 0
-        if inputRate == "sec":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
+    # set input rate
+    for i in range(len(N_rates)):
+        if N_rates[i][0] == inputRate:
+            inputRate = N_rates[i][1]
+            break
 
-        elif inputRate == "min":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
+    # set output rate
+    for i in range(len(N_rates)):
+        if N_outRates[i][0] == outputRate:
+            outputRate = N_outRates[i][1]
+            break
 
-        else:
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
+    # perform calculation
+    for i in range(len(topLeftData)):
+        topLeftData[i] = (inputValue / inputRate) * allUnits[matrix][i] * outputRate
 
-    
-    elif inputUnit == "in":
-        matrix = 1
-        if inputRate == "sec":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
-
-        elif inputRate == "min":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
-        
-        else:
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
-
-
-    elif inputUnit == "ft":
-        matrix = 2
-        if inputRate == "sec":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
-
-        elif inputRate == "min":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
-        
-        else:
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
-
-    
-    elif inputUnit == "yd":
-        matrix = 3
-        if inputRate == "sec":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
-
-        elif inputRate == "min":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
-        
-        else:
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
-
-
-    else: # input unit == mi
-        matrix = 4
-        if inputRate == "sec":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = inputValue * allUnits[matrix][i-1] * (60 * 60)
-
-        elif inputRate == "min":
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/60) * allUnits[matrix][i-1] * (60 * 60)
-        
-        else:
-            if outputRate == "Per second":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 1
-            elif outputRate == "Per minute":
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * 60
-            else:
-                for i in range(len(topLeftData)):
-                    topLeftData[i-1] = (inputValue/(60*60)) * allUnits[matrix][i-1] * (60 * 60)
-
+    # display the data
     topLeftDisplay(topLeftData)
-
         
        
 def topLeftClear():
     for currIndex in range(len(topLeftData)):
-        topLeftData[currIndex-1] = 0
+        topLeftData[currIndex] = 0
         tLeftInput.delete(0, END)
     topLeftDisplay(topLeftData)
 
 def notifyDisplay():
-    topLeftCalculate()
+    N_topLeftCalculate()
     topLeftDisplay(topLeftData)
 
 # Top left output displays Imperial - Speed
@@ -309,7 +176,8 @@ def topLeftDisplay(data):
         
     for x in range(5):
         outputUnitStuff = units[x]
-        Label(tLeftLabel, text = "                                                                      ", bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
+        Label(tLeftLabel, text = "                                                                                                    "
+              , bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
         Label(tLeftLabel, text = (str(data[x]), outputUnitStuff, "per", outputRateStuff), bg = "lightgray").grid(row = i, column = 0, padx = 7, pady = 3, sticky = "w")
         i += 1
 
@@ -321,7 +189,7 @@ tLeftLabel.pack(padx = 5, pady = 5)
 inputBoxText = Label(tLeftLabel, text = "Input", bg = "lightgray")
 inputBoxText.grid(row = 0, column = 0, padx = 5, pady = 3, sticky = "w")
 # Input field box
-tLeftInput = Entry(tLeftLabel, font = "Helvetica 17")
+tLeftInput = Entry(tLeftLabel, font = "Helvetica 17", width = 25)
 tLeftInput.grid(row = 1, column = 0, padx = 5, pady = 0)
 # Input field 2 text
 inputBoxText1 = Label(tLeftLabel, text = "Unit", bg = "lightgray")
@@ -368,44 +236,24 @@ for text, selected in options3:
     Radiobutton(tLeftLabel, text = text, variable = clicked3, value = selected, command = notifyDisplay,bg = "lightgray").grid(row = i, column = 0, padx = 5, sticky = "w")
     i += 1
 
-
 # Output fields
 # Spacer
 spacerbox = Label(tLeftLabel, text = "", bg = "lightgray", font = "Helvetica 1")
 spacerbox.grid(row = 7, column = 0, sticky = "w")
 # End Spacer
 
-
 output1 = Label(tLeftLabel, text = "Results", bg = "lightgray")
 output1.grid(row = 9, column = 0, padx = 7, pady = 0, sticky = "w")
 
 topLeftDisplay(topLeftData)
 
-
 # Calculate button
-b1 = Button(tLeftLabel, text = "CALCULATE", command = topLeftCalculate)
+b1 = Button(tLeftLabel, text = "CALCULATE", command = N_topLeftCalculate)
 b1.grid(row = 8, column = 0, padx = 7, pady = 5, sticky = "w")
 
 # Clear button
 b1 = Button(tLeftLabel, text = "CLEAR", command = topLeftClear)
 b1.grid(row = 8, column = 0, padx = 90, pady = 5, sticky = "w")
 
-
-
-
-
-'''
-# Create Frame widget
-left_frame = Frame(root, width=200, height=800)
-left_frame.grid(row=0, column=0, padx=10, pady=5)
-
-# Create frame within left_frame
-#tool_bar = Frame(left_frame, width=180, height=185, bg="purple")
-#tool_bar.grid(row=2, column=0, padx=5, pady=5)
-
-
-Label(left_frame, text="Example Text").grid(row=1, column=0, padx=5, pady=5)
-
-'''
 
 root.mainloop()
