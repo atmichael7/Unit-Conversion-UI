@@ -42,20 +42,27 @@ oneFt = [30.48, 12, 1, 0.333333, 0.000189394]
 oneYd = [91.44, 36, 3, 1, 0.000568182]
 oneMi = [160934, 63360, 5280, 1760, 1]
 
+#             cm       in         ft          yd          mi
+allUnits =  [[1,       0.393701,  0.0328084,  0.0108361,  0.0000062137], # cm
+             [2.54,    1,         0.08333,    0.0277778,  0.000015783],  # in
+             [30.48,   12,        1,          0.333333,   0.000189394],  # ft
+             [91.44,   36,        3,          1,          0.000568182],  # yd
+             [160934,  63360,     5280,       1760,       1]]            # mi 
+
 # WILL NEED TO BE UPDATED AFTER VALUES ARE CHANGED
 topLeftData = [0.0,0.0,0.0,0.0,0.0]
 
 def getInputValue():
-    return tLeftInput
+    return tLeftInput.get()
 
 def getInputUnit():
-    return dropdown1
+    return clicked1.get()
 
 def getInputRate():
-    return dropdown2
+    return clicked2.get()
 
 def getOutputRate():
-    return clicked3
+    return clicked3.get()
 
 #def updateData(data):
 #    topLeftDisplay(data)
@@ -69,9 +76,146 @@ def testUpdateData(data):
             data[x-1] = sampleList[x-1]
     topLeftDisplay(data)
 
-# Call this function if 
+
+
+# Call this function
 def topLeftCalculate():
-    testUpdateData(topLeftData)
+    
+    inputValue = float(tLeftInput.get())
+    inputUnit = clicked1.get()
+    inputRate = clicked2.get()
+    outputRate = clicked3.get()
+    
+
+    #print(inputValue, " ", inputUnit, " ", inputRate, " ", outputRate)
+
+    if inputUnit == "cm":
+        if inputRate == "sec":
+            if outputRate == "Per second":
+                for i in range(len(topLeftData)):
+                    topLeftData[i-1] = inputValue * allUnits[0][i-1] * 1
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        elif inputRate == "min":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        else:
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+
+    
+    elif inputUnit == "in":
+        if inputRate == "sec":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        elif inputRate == "min":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        else:
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+
+
+    elif inputUnit == "ft":
+        if inputRate == "sec":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        elif inputRate == "min":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        else:
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+
+    
+    elif inputUnit == "yd":
+        if inputRate == "sec":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        elif inputRate == "min":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        else:
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+
+
+    else: # input unit == mi
+        if inputRate == "sec":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        elif inputRate == "min":
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+        else:
+            if outputRate == "Per second":
+                pass
+            elif outputRate == "Per minute":
+                pass
+            else:
+                pass
+
+    topLeftDisplay(topLeftData)
+
+        
+       
+
+    
+    
 
 def topLeftClear():
     for currIndex in range(len(topLeftData)):
