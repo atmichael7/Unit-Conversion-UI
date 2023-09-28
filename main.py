@@ -45,7 +45,6 @@ oneMi = [160934, 63360, 5280, 1760, 1]
 # Data for the top left portion (Imperial - Distance)
 topLeftData = [0.0,0.0,0.0,0.0,0.0]
 
-
 # IMPERIAL UNIT CONVERSIONS ====================================================================================
 units = ["centimeters", "inches", "feet", "yards", "miles"]
 rates = ["second", "minute", "hour"]
@@ -65,7 +64,6 @@ allUnits =  [[1,       0.393701,  0.0328084,  0.0108361,  0.0000062137], # cm
              [160934,  63360,     5280,       1760,       1]]            # mi
 
 # END IMPERIAL UNIT CONVERSIONS ====================================================================================           
-
 
 # Perform calculations for the top left section
 def N_topLeftCalculate():
@@ -87,9 +85,9 @@ def N_topLeftCalculate():
     # the reason for not caring about empty strings before or after numeric input is that the program can still do calculations with empty spaces before or after
 
     inputValue = float(tLeftInput.get()) 
-    inputUnit = clicked1.get()  
-    inputRate = clicked2.get()
-    outputRate = clicked3.get()
+    inputUnit = impSpeed_dropdownSelected_inputUnits.get()  
+    inputRate = impSpeed_dropdownSelected_inputRates.get()
+    outputRate = impSpeed_radioSelected_outputRates.get()
     matrix = 0
 
     # set units to the corresponding unit matrix
@@ -135,7 +133,7 @@ def topLeftClear():
 
 # Top left output displays Imperial - Speed
 def topLeftDisplay(data):
-    selectedOutRate = clicked3.get()
+    selectedOutRate = impSpeed_radioSelected_outputRates.get()
     displayOutRate = ""
     # set output rate
     for i in range(len(rates)): # go thru rates
@@ -146,89 +144,93 @@ def topLeftDisplay(data):
     currRow = 10 # currRow is the row in which the label will be displayed for the output
     for currOutput in range(5): # currOutput is the current data entry being moved from the data to the respective row
         # this label below is to clear out any residual text that would otherwise remain since it is not associated with a variable
-        Label(tLeftLabel, text = "                                                                                                    "
+        Label(topLeftFrame_impSpeed, text = "                                                                                                    "
               , bg = "lightgray").grid(row = currRow, column = 0, padx = 7, pady = 3, sticky = "w") 
         # the label below is the data
         # ARG1: data[currOutput] is the data taken from the current index of the data passed from topLeftData
         # ARG2: is the current unit that will be displayed in the iteration respective to the row
         # ARG3: is a "per" string output to be between the unit "per" rate
         # ARG4: is the displayOutRate which is obtained from the for loop above this current one
-        Label(tLeftLabel, text = (str(data[currOutput]), units[currOutput], "per", displayOutRate), bg = "lightgray").grid(row = currRow, column = 0, padx = 7, pady = 3, sticky = "w")
+        Label(topLeftFrame_impSpeed, text = (str(data[currOutput]), units[currOutput], "per", displayOutRate), bg = "lightgray").grid(row = currRow, column = 0, padx = 7, pady = 3, sticky = "w")
         currRow += 1 # move onto the next row, used for the lable grid position arguement where row = currRow
 
 
-# Upper left
-tLeftLabel = LabelFrame(root, text = "Imperial - Speed", bg = "lightgray")
-tLeftLabel.pack(padx = 5, pady = 5)
-# Input field text
-inputBoxText = Label(tLeftLabel, text = "Input", bg = "lightgray")
-inputBoxText.grid(row = 0, column = 0, padx = 5, pady = 3, sticky = "w")
-# Input field box
-tLeftInput = Entry(tLeftLabel, font = "Helvetica 17", width = 25)
-tLeftInput.grid(row = 1, column = 0, padx = 5, pady = 0)
-# Input field 2 text
-inputBoxText1 = Label(tLeftLabel, text = "Unit", bg = "lightgray")
-inputBoxText1.grid(row = 0, column = 1)
-# Input field 2 box
-options1 = ["cm", 
-            "in", 
-            "ft", 
-            "yd", 
-            "mi"]
-clicked1 = StringVar()
-clicked1.set(options1[0])
-dropdown1 = OptionMenu(tLeftLabel, clicked1, *options1)
-dropdown1.config(relief = "flat")
-dropdown1.grid(row = 1, column = 1)
-# Input field 3 text
-inputBoxText2 = Label(tLeftLabel, text = "Rate", bg = "lightgray")
-inputBoxText2.grid(row = 0, column = 2)
-# Input field 3 box
-options2 = ["sec", 
-            "min", 
-            "hr"]
-clicked2 = StringVar()
-clicked2.set(options2[0])
-dropdown2 = OptionMenu(tLeftLabel, clicked2, *options2)
-dropdown2.config(relief = "flat")
-dropdown2.grid(row = 1, column = 2, padx = 4)
-# Input field 4 text 
-# Spacer
-spacerbox = Label(tLeftLabel, text = "", bg = "lightgray", font = "Helvetica 1")
-spacerbox.grid(row = 2, column = 0, sticky = "w")
-# End Spacer
-inputBoxText4 = Label(tLeftLabel, text = "Output rate", bg = "lightgray")
-inputBoxText4.grid(row = 3, column = 0, padx = 5, sticky = "w")
-# Input field 4 radio
-options3 = [("Per second", "Per second"), 
-            ("Per minute", "Per minute"), 
-            ("Per hour    ", "Per hour")]
-clicked3 = StringVar()
-clicked3.set("Per second")
+# Top left Frame that contains all the imperial speed inputs and outputs
+topLeftFrame_impSpeed = LabelFrame(root, text = "Imperial - Speed", bg = "lightgray")
+topLeftFrame_impSpeed.pack(padx = 5, pady = 5)
 
+# Text above the input box
+Label(topLeftFrame_impSpeed, text = "Input", bg = "lightgray").grid(row = 0, column = 0, padx = 5, pady = 3, sticky = "w")
+
+# Input box where the user enters the value
+tLeftInput = Entry(topLeftFrame_impSpeed, font = "Helvetica 17", width = 25)
+tLeftInput.grid(row = 1, column = 0, padx = 5, pady = 0)
+
+# Text above the dropdown box for input units
+Label(topLeftFrame_impSpeed, text = "Unit", bg = "lightgray").grid(row = 0, column = 1)
+
+# Options for the input units dropdown box
+impSpeed_dropdownUnits = ["cm",
+                          "in", 
+                          "ft", 
+                          "yd", 
+                          "mi"]
+impSpeed_dropdownSelected_inputUnits = StringVar()
+impSpeed_dropdownSelected_inputUnits.set(impSpeed_dropdownUnits[0])
+
+# Dropdown box object for the input units                                                                                 
+impSpeed_dropdownBox_inputUnits = OptionMenu(topLeftFrame_impSpeed, impSpeed_dropdownSelected_inputUnits, *impSpeed_dropdownUnits)
+impSpeed_dropdownBox_inputUnits.config(relief = "flat")
+impSpeed_dropdownBox_inputUnits.grid(row = 1, column = 1)
+
+# Text above the dropdown box for input rates
+Label(topLeftFrame_impSpeed, text = "Rate", bg = "lightgray").grid(row = 0, column = 2)
+
+# Options for the dropdown box for the input rates
+impSpeed_dropdownRates = ["sec", 
+                          "min", 
+                          "hr"]
+impSpeed_dropdownSelected_inputRates = StringVar()
+impSpeed_dropdownSelected_inputRates.set(impSpeed_dropdownRates[0])
+
+# Dropwdown box object for the input rates
+impSpeed_dropdownBox_inputRates = OptionMenu(topLeftFrame_impSpeed, impSpeed_dropdownSelected_inputRates, *impSpeed_dropdownRates)
+impSpeed_dropdownBox_inputRates.config(relief = "flat")
+impSpeed_dropdownBox_inputRates.grid(row = 1, column = 2, padx = 4)
+
+# Spacer
+Label(topLeftFrame_impSpeed, text = "", bg = "lightgray", font = "Helvetica 1").grid(row = 2, column = 0, sticky = "w")
+
+Label(topLeftFrame_impSpeed, text = "Output rate", bg = "lightgray").grid(row = 3, column = 0, padx = 5, sticky = "w")
+
+# Options for the radio buttons
+impSpeed_radio_ratesOptions = [("Per second", "Per second"), 
+                               ("Per minute", "Per minute"), 
+                               ("Per hour    ", "Per hour")]
+impSpeed_radioSelected_outputRates = StringVar()
+impSpeed_radioSelected_outputRates.set("Per second")
+
+# Loop to create each radio button option
 i = 4
-for text, selected in options3:
-    Radiobutton(tLeftLabel, text = text, variable = clicked3, value = selected, command = N_topLeftCalculate,bg = "lightgray").grid(row = i, column = 0, padx = 5, sticky = "w")
+for text, selected in impSpeed_radio_ratesOptions:
+    Radiobutton(topLeftFrame_impSpeed, text = text, variable = impSpeed_radioSelected_outputRates, value = selected, command = N_topLeftCalculate,bg = "lightgray").grid(row = i, column = 0, padx = 5, sticky = "w")
     i += 1
 
-# Output fields
 # Spacer
-spacerbox = Label(tLeftLabel, text = "", bg = "lightgray", font = "Helvetica 1")
-spacerbox.grid(row = 7, column = 0, sticky = "w")
-# End Spacer
+Label(topLeftFrame_impSpeed, text = "", bg = "lightgray", font = "Helvetica 1").grid(row = 7, column = 0, sticky = "w")
 
-output1 = Label(tLeftLabel, text = "Results", bg = "lightgray")
-output1.grid(row = 9, column = 0, padx = 7, pady = 0, sticky = "w")
-
-topLeftDisplay(topLeftData)
+# Text above the output fields
+Label(topLeftFrame_impSpeed, text = "Results", bg = "lightgray").grid(row = 9, column = 0, padx = 7, pady = 0, sticky = "w")
 
 # Calculate button
-b1 = Button(tLeftLabel, text = "CALCULATE", command = N_topLeftCalculate)
-b1.grid(row = 8, column = 0, padx = 7, pady = 5, sticky = "w")
+Button(topLeftFrame_impSpeed, text = "CALCULATE", command = N_topLeftCalculate).grid(row = 8, column = 0, padx = 7, pady = 5, sticky = "w")
 
 # Clear button
-b1 = Button(tLeftLabel, text = "CLEAR", command = topLeftClear)
-b1.grid(row = 8, column = 0, padx = 90, pady = 5, sticky = "w")
+Button(topLeftFrame_impSpeed, text = "CLEAR", command = topLeftClear).grid(row = 8, column = 0, padx = 90, pady = 5, sticky = "w")
+
+# Display the output fields to not have empty space and be somewhat jarring if the user calculates an input and sees the output appear out of nowhere
+topLeftDisplay(topLeftData)
 
 
+# Display the mainloop of tkinter
 root.mainloop()
